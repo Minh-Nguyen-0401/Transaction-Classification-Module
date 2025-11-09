@@ -1,0 +1,3 @@
+2025-11-09 23:33:01 - INFO - Included label column: 'label_l1' (from 'category')
+2025-11-09 23:33:01 - INFO - Training mode: included txn_date, sender_id, recipient_entity_id, label_l1
+2025-11-09 23:33:01 - INFO - Processed 10000 transactions \u2192 data\processed\ctx_emb.parquet

@@ -1,0 +1,236 @@
+Loading training data with lookback=1 days for features
+Note: Make sure data\processed\ctx_emb.parquet was generated with --mode train
+Transaction date range: 2025-09-01 to 2025-09-30
+Feature date range needed: 2025-08-31 to 2025-09-29 (lookback=1 days)
+Loaded context embeddings: 128 dimensions
+Loading 30 daily snapshots for sender and recipient features
+Warning: x_snd not found for 2025-08-31
+Merged sender features: 7099 total embeddings across dates
+Warning: x_rcv not found for 2025-08-31
+Merged recipient features: 8178 total embeddings across dates
+Feature dimensions: CTX=128, SND=128, RCV=96, Total=352
+Labels: 10 classes from label map, 10000 valid samples, 0 unknown labels
+2025-11-10 00:16:27 - INFO - Date-based split:
+2025-11-10 00:16:27 - INFO -   Train period: 2025-09-01 00:00:00 -> 2025-09-23 00:00:00 (7690 samples)
+2025-11-10 00:16:27 - INFO -   Val period: 2025-09-24 00:00:00 -> 2025-09-30 00:00:00 (2310 samples)
+Total trainable parameters: 316170
+Training Progress:   0%|          | 0/8 [00:00<?, ?it/s]
+Epoch 1/8:   0%|          | 0/16 [00:00<?, ?it/s][A
+Epoch 1/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=2.3965][A
+Epoch 1/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=2.3040][A
+Epoch 1/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=2.2424][A
+Epoch 1/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=2.1460][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=2.1460][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=2.1221][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=2.0881][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=2.0563][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.9289][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.9141][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.8463][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.7699][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.6859][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.6711][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.6186][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.5805][A
+Epoch 1/8:  25%|##5       | 4/16 [00:00<00:00, 38.46it/s, loss=1.3704][A
+                                                                      [A
+Validation 1/8:   0%|          | 0/5 [00:00<?, ?it/s][A
+Validation 1/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.3560][A
+Validation 1/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.3427][A
+Validation 1/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.3462][A
+Validation 1/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.3489][A
+Validation 1/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.3936][A
+                                                                  [A                                                        Epoch 1/8 - Train Loss: 1.921317 | Val Loss: 1.357484 | Acc: 0.5866 | F1: 0.5339 | ROC-AUC: 0.9233 [BEST]
+Training Progress:   0%|          | 0/8 [00:00<?, ?it/s]Training Progress:  12%|#2        | 1/8 [00:00<00:01,  4.44it/s]
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.4709][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.5000][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.5238][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.4274][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.3898][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.3199][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.3613][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.3033][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.2422][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.2337][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.2090][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.2457][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.1785][A
+Epoch 2/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.1188][A
+Epoch 2/8:  88%|########7 | 14/16 [00:00<00:00, 134.06it/s, loss=1.1188][A
+Epoch 2/8:  88%|########7 | 14/16 [00:00<00:00, 134.06it/s, loss=1.1243][A
+Epoch 2/8:  88%|########7 | 14/16 [00:00<00:00, 134.06it/s, loss=1.2235][A
+                                                                        [A
+Validation 2/8:   0%|          | 0/5 [00:00<?, ?it/s][A
+Validation 2/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.1453][A
+Validation 2/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.1186][A
+Validation 2/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.1730][A
+Validation 2/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.1474][A
+Validation 2/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=1.0909][A
+                                                                  [A                                                                Epoch 2/8 - Train Loss: 1.304508 | Val Loss: 1.135035 | Acc: 0.5273 | F1: 0.4952 | ROC-AUC: 0.9575 [BEST]
+Training Progress:  12%|#2        | 1/8 [00:00<00:01,  4.44it/s]Training Progress:  25%|##5       | 2/8 [00:00<00:01,  5.71it/s]
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.1946][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.3270][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.1820][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.0554][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.0619][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.0485][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.0954][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=1.0032][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.9798][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.9503][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.9720][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.9608][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.8764][A
+Epoch 3/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.9112][A
+Epoch 3/8:  88%|########7 | 14/16 [00:00<00:00, 129.97it/s, loss=0.9112][A
+Epoch 3/8:  88%|########7 | 14/16 [00:00<00:00, 129.97it/s, loss=0.8508][A
+Epoch 3/8:  88%|########7 | 14/16 [00:00<00:00, 129.97it/s, loss=0.7252][A
+                                                                        [A
+Validation 3/8:   0%|          | 0/5 [00:00<?, ?it/s][A
+Validation 3/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.7626][A
+Validation 3/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.7405][A
+Validation 3/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.7478][A
+Validation 3/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.8162][A
+Validation 3/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.8100][A
+                                                                  [A                                                                Epoch 3/8 - Train Loss: 1.012149 | Val Loss: 0.775436 | Acc: 0.7372 | F1: 0.7123 | ROC-AUC: 0.9774 [BEST]
+Training Progress:  25%|##5       | 2/8 [00:00<00:01,  5.71it/s]Training Progress:  38%|###7      | 3/8 [00:00<00:00,  6.23it/s]
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.8367][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.8611][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.8370][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.8408][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.8289][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.7863][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.7733][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.7479][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.7047][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6745][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6909][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6196][A
+Epoch 4/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6284][A
+Epoch 4/8:  81%|########1 | 13/16 [00:00<00:00, 129.13it/s, loss=0.6284][A
+Epoch 4/8:  81%|########1 | 13/16 [00:00<00:00, 129.13it/s, loss=0.5922][A
+Epoch 4/8:  81%|########1 | 13/16 [00:00<00:00, 129.13it/s, loss=0.6226][A
+Epoch 4/8:  81%|########1 | 13/16 [00:00<00:00, 129.13it/s, loss=0.6928][A
+                                                                        [A
+Validation 4/8:   0%|          | 0/5 [00:00<?, ?it/s][A
+Validation 4/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.6724][A
+Validation 4/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.6012][A
+Validation 4/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.6481][A
+Validation 4/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.7135][A
+Validation 4/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.6196][A
+                                                                  [A                                                                Epoch 4/8 - Train Loss: 0.733611 | Val Loss: 0.650949 | Acc: 0.7732 | F1: 0.7422 | ROC-AUC: 0.9859 [BEST]
+Training Progress:  38%|###7      | 3/8 [00:00<00:00,  6.23it/s]Training Progress:  50%|#####     | 4/8 [00:00<00:00,  6.42it/s]
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.7331][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.7232][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6115][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6067][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6744][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6611][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6498][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.6145][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5516][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5392][A
+Epoch 5/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5542][A
+Epoch 5/8:  69%|######8   | 11/16 [00:00<00:00, 104.77it/s, loss=0.5542][A
+Epoch 5/8:  69%|######8   | 11/16 [00:00<00:00, 104.77it/s, loss=0.5461][A
+Epoch 5/8:  69%|######8   | 11/16 [00:00<00:00, 104.77it/s, loss=0.5396][A
+Epoch 5/8:  69%|######8   | 11/16 [00:00<00:00, 104.77it/s, loss=0.5017][A
+Epoch 5/8:  69%|######8   | 11/16 [00:00<00:00, 104.77it/s, loss=0.5053][A
+Epoch 5/8:  69%|######8   | 11/16 [00:00<00:00, 104.77it/s, loss=0.7151][A
+                                                                        [A
+Validation 5/8:   0%|          | 0/5 [00:00<?, ?it/s][A
+Validation 5/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.4245][A
+Validation 5/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.3831][A
+Validation 5/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.4107][A
+Validation 5/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.4305][A
+Validation 5/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.4115][A
+                                                                  [A                                                                Epoch 5/8 - Train Loss: 0.607954 | Val Loss: 0.412046 | Acc: 0.8623 | F1: 0.8424 | ROC-AUC: 0.9931 [BEST]
+Training Progress:  50%|#####     | 4/8 [00:00<00:00,  6.42it/s]Training Progress:  62%|######2   | 5/8 [00:00<00:00,  5.97it/s]
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4524][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5448][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5385][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5573][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5027][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5395][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4459][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4742][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4551][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4727][A
+Epoch 6/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4530][A
+Epoch 6/8:  69%|######8   | 11/16 [00:00<00:00, 105.57it/s, loss=0.4530][A
+Epoch 6/8:  69%|######8   | 11/16 [00:00<00:00, 105.57it/s, loss=0.3918][A
+Epoch 6/8:  69%|######8   | 11/16 [00:00<00:00, 105.57it/s, loss=0.4225][A
+Epoch 6/8:  69%|######8   | 11/16 [00:00<00:00, 105.57it/s, loss=0.4074][A
+Epoch 6/8:  69%|######8   | 11/16 [00:00<00:00, 105.57it/s, loss=0.3706][A
+Epoch 6/8:  69%|######8   | 11/16 [00:00<00:00, 105.57it/s, loss=0.3279][A
+                                                                        [A
+Validation 6/8:   0%|          | 0/5 [00:00<?, ?it/s][A
+Validation 6/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.4465][A
+Validation 6/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.4041][A
+Validation 6/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.4588][A
+Validation 6/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.4050][A
+Validation 6/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.3802][A
+                                                                  [A                                                                Epoch 6/8 - Train Loss: 0.459755 | Val Loss: 0.418933 | Acc: 0.8537 | F1: 0.8415 | ROC-AUC: 0.9934
+Training Progress:  62%|######2   | 5/8 [00:01<00:00,  5.97it/s]Training Progress:  75%|#######5  | 6/8 [00:01<00:00,  5.93it/s]
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4702][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4934][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3744][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.4116][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.5240][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3843][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3519][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3741][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3529][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3447][A
+Epoch 7/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3258][A
+Epoch 7/8:  69%|######8   | 11/16 [00:00<00:00, 103.23it/s, loss=0.3258][A
+Epoch 7/8:  69%|######8   | 11/16 [00:00<00:00, 103.23it/s, loss=0.3331][A
+Epoch 7/8:  69%|######8   | 11/16 [00:00<00:00, 103.23it/s, loss=0.3362][A
+Epoch 7/8:  69%|######8   | 11/16 [00:00<00:00, 103.23it/s, loss=0.2926][A
+Epoch 7/8:  69%|######8   | 11/16 [00:00<00:00, 103.23it/s, loss=0.3060][A
+Epoch 7/8:  69%|######8   | 11/16 [00:00<00:00, 103.23it/s, loss=0.2450][A
+                                                                        [A
+Validation 7/8:   0%|          | 0/5 [00:00<?, ?it/s][A
+Validation 7/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2824][A
+Validation 7/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2669][A
+Validation 7/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2850][A
+Validation 7/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2877][A
+Validation 7/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2618][A
+                                                                  [A                                                                Epoch 7/8 - Train Loss: 0.370016 | Val Loss: 0.276747 | Acc: 0.9134 | F1: 0.9104 | ROC-AUC: 0.9960 [BEST]
+Training Progress:  75%|#######5  | 6/8 [00:01<00:00,  5.93it/s]Training Progress:  88%|########7 | 7/8 [00:01<00:00,  5.85it/s]
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3900][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3800][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3023][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3733][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3190][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3520][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.3134][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.2981][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.2841][A
+Epoch 8/8:   0%|          | 0/16 [00:00<?, ?it/s, loss=0.2435][A
+Epoch 8/8:  62%|######2   | 10/16 [00:00<00:00, 89.23it/s, loss=0.2435][A
+Epoch 8/8:  62%|######2   | 10/16 [00:00<00:00, 89.23it/s, loss=0.2794][A
+Epoch 8/8:  62%|######2   | 10/16 [00:00<00:00, 89.23it/s, loss=0.2822][A
+Epoch 8/8:  62%|######2   | 10/16 [00:00<00:00, 89.23it/s, loss=0.2450][A
+Epoch 8/8:  62%|######2   | 10/16 [00:00<00:00, 89.23it/s, loss=0.2297][A
+Epoch 8/8:  62%|######2   | 10/16 [00:00<00:00, 89.23it/s, loss=0.2344][A
+Epoch 8/8:  62%|######2   | 10/16 [00:00<00:00, 89.23it/s, loss=0.4761][A
+                                                                       [A
+Validation 8/8:   0%|          | 0/5 [00:00<?, ?it/s][A
+Validation 8/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2780][A
+Validation 8/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2603][A
+Validation 8/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2713][A
+Validation 8/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2809][A
+Validation 8/8:   0%|          | 0/5 [00:00<?, ?it/s, loss=0.2664][A
+                                                                  [A                                                                Epoch 8/8 - Train Loss: 0.312663 | Val Loss: 0.271382 | Acc: 0.9022 | F1: 0.8984 | ROC-AUC: 0.9957 [BEST]
+Training Progress:  88%|########7 | 7/8 [00:01<00:00,  5.85it/s]Training Progress: 100%|##########| 8/8 [00:01<00:00,  5.56it/s]Training Progress: 100%|##########| 8/8 [00:01<00:00,  5.75it/s]
+Restored best model with val loss: 0.271382
+
+Model saved to models

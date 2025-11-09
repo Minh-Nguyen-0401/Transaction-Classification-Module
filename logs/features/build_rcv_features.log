@@ -1,0 +1,246 @@
+2025-11-09 23:33:20 - INFO - Found 30 unique transaction dates
+2025-11-09 23:33:20 - INFO - Existing snapshots: 0 dates
+2025-11-09 23:33:20 - INFO - To process: 30 dates
+2025-11-09 23:33:20 - INFO - Processing dates: ['2025-09-01', '2025-09-02', '2025-09-03', '2025-09-04', '2025-09-05']...
+2025-11-09 23:33:20 - INFO - 
+============================================================
+2025-11-09 23:33:20 - INFO - Processing snapshot date: 2025-09-01
+2025-11-09 23:33:20 - INFO - ============================================================
+2025-11-09 23:33:20 - INFO - Found 317 active recipients on 2025-09-01
+2025-11-09 23:33:20 - INFO - Processing 375 transactions (lookback: 10 days)
+2025-11-09 23:33:20 - INFO - Generated daily snapshot for 317 recipients \u2192 data\feature_store\x_rcv\date=2025-09-01\x_rcv_entity_state.parquet
+2025-11-09 23:33:20 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:20 - INFO - 
+============================================================
+2025-11-09 23:33:20 - INFO - Processing snapshot date: 2025-09-02
+2025-11-09 23:33:20 - INFO - ============================================================
+2025-11-09 23:33:20 - INFO - Found 284 active recipients on 2025-09-02
+2025-11-09 23:33:20 - INFO - Processing 458 transactions (lookback: 10 days)
+2025-11-09 23:33:20 - INFO - Generated daily snapshot for 284 recipients \u2192 data\feature_store\x_rcv\date=2025-09-02\x_rcv_entity_state.parquet
+2025-11-09 23:33:20 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:20 - INFO - 
+============================================================
+2025-11-09 23:33:20 - INFO - Processing snapshot date: 2025-09-03
+2025-11-09 23:33:20 - INFO - ============================================================
+2025-11-09 23:33:20 - INFO - Found 274 active recipients on 2025-09-03
+2025-11-09 23:33:20 - INFO - Processing 534 transactions (lookback: 10 days)
+2025-11-09 23:33:21 - INFO - Generated daily snapshot for 274 recipients \u2192 data\feature_store\x_rcv\date=2025-09-03\x_rcv_entity_state.parquet
+2025-11-09 23:33:21 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:21 - INFO - 
+============================================================
+2025-11-09 23:33:21 - INFO - Processing snapshot date: 2025-09-04
+2025-11-09 23:33:21 - INFO - ============================================================
+2025-11-09 23:33:21 - INFO - Found 277 active recipients on 2025-09-04
+2025-11-09 23:33:21 - INFO - Processing 636 transactions (lookback: 10 days)
+2025-11-09 23:33:21 - INFO - Generated daily snapshot for 277 recipients \u2192 data\feature_store\x_rcv\date=2025-09-04\x_rcv_entity_state.parquet
+2025-11-09 23:33:21 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:21 - INFO - 
+============================================================
+2025-11-09 23:33:21 - INFO - Processing snapshot date: 2025-09-05
+2025-11-09 23:33:21 - INFO - ============================================================
+2025-11-09 23:33:21 - INFO - Found 272 active recipients on 2025-09-05
+2025-11-09 23:33:21 - INFO - Processing 691 transactions (lookback: 10 days)
+2025-11-09 23:33:21 - INFO - Generated daily snapshot for 272 recipients \u2192 data\feature_store\x_rcv\date=2025-09-05\x_rcv_entity_state.parquet
+2025-11-09 23:33:21 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:21 - INFO - 
+============================================================
+2025-11-09 23:33:21 - INFO - Processing snapshot date: 2025-09-06
+2025-11-09 23:33:21 - INFO - ============================================================
+2025-11-09 23:33:21 - INFO - Found 275 active recipients on 2025-09-06
+2025-11-09 23:33:21 - INFO - Processing 779 transactions (lookback: 10 days)
+2025-11-09 23:33:21 - INFO - Generated daily snapshot for 275 recipients \u2192 data\feature_store\x_rcv\date=2025-09-06\x_rcv_entity_state.parquet
+2025-11-09 23:33:21 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:21 - INFO - 
+============================================================
+2025-11-09 23:33:21 - INFO - Processing snapshot date: 2025-09-07
+2025-11-09 23:33:21 - INFO - ============================================================
+2025-11-09 23:33:21 - INFO - Found 278 active recipients on 2025-09-07
+2025-11-09 23:33:21 - INFO - Processing 908 transactions (lookback: 10 days)
+2025-11-09 23:33:21 - INFO - Generated daily snapshot for 278 recipients \u2192 data\feature_store\x_rcv\date=2025-09-07\x_rcv_entity_state.parquet
+2025-11-09 23:33:21 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:21 - INFO - 
+============================================================
+2025-11-09 23:33:21 - INFO - Processing snapshot date: 2025-09-08
+2025-11-09 23:33:21 - INFO - ============================================================
+2025-11-09 23:33:21 - INFO - Found 284 active recipients on 2025-09-08
+2025-11-09 23:33:21 - INFO - Processing 979 transactions (lookback: 10 days)
+2025-11-09 23:33:21 - INFO - Generated daily snapshot for 284 recipients \u2192 data\feature_store\x_rcv\date=2025-09-08\x_rcv_entity_state.parquet
+2025-11-09 23:33:21 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:21 - INFO - 
+============================================================
+2025-11-09 23:33:21 - INFO - Processing snapshot date: 2025-09-09
+2025-11-09 23:33:21 - INFO - ============================================================
+2025-11-09 23:33:21 - INFO - Found 294 active recipients on 2025-09-09
+2025-11-09 23:33:21 - INFO - Processing 1131 transactions (lookback: 10 days)
+2025-11-09 23:33:21 - INFO - Generated daily snapshot for 294 recipients \u2192 data\feature_store\x_rcv\date=2025-09-09\x_rcv_entity_state.parquet
+2025-11-09 23:33:21 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:21 - INFO - 
+============================================================
+2025-11-09 23:33:21 - INFO - Processing snapshot date: 2025-09-10
+2025-11-09 23:33:21 - INFO - ============================================================
+2025-11-09 23:33:21 - INFO - Found 295 active recipients on 2025-09-10
+2025-11-09 23:33:21 - INFO - Processing 1255 transactions (lookback: 10 days)
+2025-11-09 23:33:21 - INFO - Generated daily snapshot for 295 recipients \u2192 data\feature_store\x_rcv\date=2025-09-10\x_rcv_entity_state.parquet
+2025-11-09 23:33:21 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:21 - INFO - 
+============================================================
+2025-11-09 23:33:21 - INFO - Processing snapshot date: 2025-09-11
+2025-11-09 23:33:21 - INFO - ============================================================
+2025-11-09 23:33:21 - INFO - Found 275 active recipients on 2025-09-11
+2025-11-09 23:33:21 - INFO - Processing 1287 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 275 recipients \u2192 data\feature_store\x_rcv\date=2025-09-11\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-12
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:22 - INFO - Found 243 active recipients on 2025-09-12
+2025-11-09 23:33:22 - INFO - Processing 1090 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 243 recipients \u2192 data\feature_store\x_rcv\date=2025-09-12\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-13
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:22 - INFO - Found 268 active recipients on 2025-09-13
+2025-11-09 23:33:22 - INFO - Processing 1130 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 268 recipients \u2192 data\feature_store\x_rcv\date=2025-09-13\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-14
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:22 - INFO - Found 301 active recipients on 2025-09-14
+2025-11-09 23:33:22 - INFO - Processing 1368 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 301 recipients \u2192 data\feature_store\x_rcv\date=2025-09-14\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-15
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:22 - INFO - Found 288 active recipients on 2025-09-15
+2025-11-09 23:33:22 - INFO - Processing 1285 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 288 recipients \u2192 data\feature_store\x_rcv\date=2025-09-15\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-16
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:22 - INFO - Found 290 active recipients on 2025-09-16
+2025-11-09 23:33:22 - INFO - Processing 1288 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 290 recipients \u2192 data\feature_store\x_rcv\date=2025-09-16\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-17
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:22 - INFO - Found 281 active recipients on 2025-09-17
+2025-11-09 23:33:22 - INFO - Processing 1272 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 281 recipients \u2192 data\feature_store\x_rcv\date=2025-09-17\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-18
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:22 - INFO - Found 278 active recipients on 2025-09-18
+2025-11-09 23:33:22 - INFO - Processing 1270 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 278 recipients \u2192 data\feature_store\x_rcv\date=2025-09-18\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-19
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:22 - INFO - Found 282 active recipients on 2025-09-19
+2025-11-09 23:33:22 - INFO - Processing 1281 transactions (lookback: 10 days)
+2025-11-09 23:33:22 - INFO - Generated daily snapshot for 282 recipients \u2192 data\feature_store\x_rcv\date=2025-09-19\x_rcv_entity_state.parquet
+2025-11-09 23:33:22 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:22 - INFO - 
+============================================================
+2025-11-09 23:33:22 - INFO - Processing snapshot date: 2025-09-20
+2025-11-09 23:33:22 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 309 active recipients on 2025-09-20
+2025-11-09 23:33:23 - INFO - Processing 1398 transactions (lookback: 10 days)
+2025-11-09 23:33:23 - INFO - Generated daily snapshot for 309 recipients \u2192 data\feature_store\x_rcv\date=2025-09-20\x_rcv_entity_state.parquet
+2025-11-09 23:33:23 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:23 - INFO - 
+============================================================
+2025-11-09 23:33:23 - INFO - Processing snapshot date: 2025-09-21
+2025-11-09 23:33:23 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 274 active recipients on 2025-09-21
+2025-11-09 23:33:23 - INFO - Processing 1258 transactions (lookback: 10 days)
+2025-11-09 23:33:23 - INFO - Generated daily snapshot for 274 recipients \u2192 data\feature_store\x_rcv\date=2025-09-21\x_rcv_entity_state.parquet
+2025-11-09 23:33:23 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:23 - INFO - 
+============================================================
+2025-11-09 23:33:23 - INFO - Processing snapshot date: 2025-09-22
+2025-11-09 23:33:23 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 279 active recipients on 2025-09-22
+2025-11-09 23:33:23 - INFO - Processing 1273 transactions (lookback: 10 days)
+2025-11-09 23:33:23 - INFO - Generated daily snapshot for 279 recipients \u2192 data\feature_store\x_rcv\date=2025-09-22\x_rcv_entity_state.parquet
+2025-11-09 23:33:23 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:23 - INFO - 
+============================================================
+2025-11-09 23:33:23 - INFO - Processing snapshot date: 2025-09-23
+2025-11-09 23:33:23 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 291 active recipients on 2025-09-23
+2025-11-09 23:33:23 - INFO - Processing 1341 transactions (lookback: 10 days)
+2025-11-09 23:33:23 - INFO - Generated daily snapshot for 291 recipients \u2192 data\feature_store\x_rcv\date=2025-09-23\x_rcv_entity_state.parquet
+2025-11-09 23:33:23 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:23 - INFO - 
+============================================================
+2025-11-09 23:33:23 - INFO - Processing snapshot date: 2025-09-24
+2025-11-09 23:33:23 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 272 active recipients on 2025-09-24
+2025-11-09 23:33:23 - INFO - Processing 1278 transactions (lookback: 10 days)
+2025-11-09 23:33:23 - INFO - Generated daily snapshot for 272 recipients \u2192 data\feature_store\x_rcv\date=2025-09-24\x_rcv_entity_state.parquet
+2025-11-09 23:33:23 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:23 - INFO - 
+============================================================
+2025-11-09 23:33:23 - INFO - Processing snapshot date: 2025-09-25
+2025-11-09 23:33:23 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 299 active recipients on 2025-09-25
+2025-11-09 23:33:23 - INFO - Processing 1285 transactions (lookback: 10 days)
+2025-11-09 23:33:23 - INFO - Generated daily snapshot for 299 recipients \u2192 data\feature_store\x_rcv\date=2025-09-25\x_rcv_entity_state.parquet
+2025-11-09 23:33:23 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:23 - INFO - 
+============================================================
+2025-11-09 23:33:23 - INFO - Processing snapshot date: 2025-09-26
+2025-11-09 23:33:23 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 304 active recipients on 2025-09-26
+2025-11-09 23:33:23 - INFO - Processing 1367 transactions (lookback: 10 days)
+2025-11-09 23:33:23 - INFO - Generated daily snapshot for 304 recipients \u2192 data\feature_store\x_rcv\date=2025-09-26\x_rcv_entity_state.parquet
+2025-11-09 23:33:23 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:23 - INFO - 
+============================================================
+2025-11-09 23:33:23 - INFO - Processing snapshot date: 2025-09-27
+2025-11-09 23:33:23 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 259 active recipients on 2025-09-27
+2025-11-09 23:33:23 - INFO - Processing 1161 transactions (lookback: 10 days)
+2025-11-09 23:33:23 - INFO - Generated daily snapshot for 259 recipients \u2192 data\feature_store\x_rcv\date=2025-09-27\x_rcv_entity_state.parquet
+2025-11-09 23:33:23 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:23 - INFO - 
+============================================================
+2025-11-09 23:33:23 - INFO - Processing snapshot date: 2025-09-28
+2025-11-09 23:33:23 - INFO - ============================================================
+2025-11-09 23:33:23 - INFO - Found 269 active recipients on 2025-09-28
+2025-11-09 23:33:23 - INFO - Processing 1218 transactions (lookback: 10 days)
+2025-11-09 23:33:24 - INFO - Generated daily snapshot for 269 recipients \u2192 data\feature_store\x_rcv\date=2025-09-28\x_rcv_entity_state.parquet
+2025-11-09 23:33:24 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:24 - INFO - 
+============================================================
+2025-11-09 23:33:24 - INFO - Processing snapshot date: 2025-09-29
+2025-11-09 23:33:24 - INFO - ============================================================
+2025-11-09 23:33:24 - INFO - Found 266 active recipients on 2025-09-29
+2025-11-09 23:33:24 - INFO - Processing 1232 transactions (lookback: 10 days)
+2025-11-09 23:33:24 - INFO - Generated daily snapshot for 266 recipients \u2192 data\feature_store\x_rcv\date=2025-09-29\x_rcv_entity_state.parquet
+2025-11-09 23:33:24 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:24 - INFO - 
+============================================================
+2025-11-09 23:33:24 - INFO - Processing snapshot date: 2025-09-30
+2025-11-09 23:33:24 - INFO - ============================================================
+2025-11-09 23:33:24 - INFO - Found 285 active recipients on 2025-09-30
+2025-11-09 23:33:24 - INFO - Processing 1282 transactions (lookback: 10 days)
+2025-11-09 23:33:24 - INFO - Generated daily snapshot for 285 recipients \u2192 data\feature_store\x_rcv\date=2025-09-30\x_rcv_entity_state.parquet
+2025-11-09 23:33:24 - INFO - SVD dim: 64, Hash dim: 32, Total: 96
+2025-11-09 23:33:24 - INFO - Created new cumulative store with 8463 recipients
+2025-11-09 23:33:24 - INFO - Cumulative store saved \u2192 data\feature_store\x_rcv\date=ALL\x_rcv_entity_state.parquet

@@ -1,0 +1,83 @@
+============================================================
+SYNTHETIC DATA GENERATOR
+============================================================
+Configuration:
+  Transactions: 10000
+  Days: 30
+  Start date: 2025-09-01
+============================================================
+Generating synthetic data:
+  Transactions: 10000 over 30 days
+  Senders: 500
+  Recipients: 666 (333 merchants, 333 persons)
+
+============================================================
+Generating datasets...
+============================================================
+
+1. Generating customer profiles...
+   [OK] Saved 500 customer profiles
+
+2. Generating recipient entities...
+   [OK] Saved 666 recipient entities
+
+3. Generating merchant profiles...
+   [OK] Saved 333 merchant profiles
+
+4. Generating person profiles...
+   [OK] Saved 333 person profiles
+
+5. Generating recipient aliases...
+   [OK] Saved 1322 recipient aliases
+
+6. Generating transactions...
+   [OK] Saved 10000 transactions
+   Date range: 2025-09-01 to 2025-09-30
+
+   Category distribution:
+      BIL (Bills & Utilities): 977 (9.8%)
+      EDU (Education & Learning): 1021 (10.2%)
+      ENT (Entertainment & Leisure): 987 (9.9%)
+      FIN (Financial Services): 1016 (10.2%)
+      FOO (Food & Drink): 1038 (10.4%)
+      HLT (Health & Wellness): 967 (9.7%)
+      INS (Insurance & Taxes): 988 (9.9%)
+      OTH (Other): 1025 (10.2%)
+      SHP (Shopping & Retail): 951 (9.5%)
+      TRN (Transport & Mobility): 1030 (10.3%)
+
+============================================================
+[OK] All datasets saved to: D:\Study\UNIVERSITY\SENIOR YEAR\Advanced BA\final\tranx_clf\data\raw
+============================================================
+
+Dataset Summary:
+  Customers: 500
+  Recipients: 666 (333 merchants, 333 persons)
+  Transactions: 10000 over 30 days
+  Categories: 10
+
+============================================================
+Ready to run pipeline!
+============================================================
+
+Next steps:
+  1. Train context encoder:
+     python src/_build_enc/train_ctx_enc.py
+
+  2. Train sender encoder:
+     python src/_build_enc/train_snd_enc.py
+
+  3. Generate context features WITH TRAINING DATA (--mode train):
+     python src/preprocess/_x_ctx_online.py --mode train
+
+  4. Generate sender features (processes all dates automatically):
+     python src/preprocess/_x_snd_offline.py
+
+  5. Generate recipient features (processes all dates automatically):
+     python src/preprocess/_x_rcv_offline.py
+
+  6. Train classifier (uses ctx_emb.parquet with labels):
+     python src/train_clf/train_main_clf.py
+
+  Note: For inference, run step 3 with --mode inference (default)
+============================================================

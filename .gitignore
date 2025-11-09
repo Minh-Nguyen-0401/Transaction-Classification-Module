@@ -55,8 +55,8 @@ models/*.h5
 models/*.pth
 
 # Logs
-logs/
-*.log
+# logs/
+# *.log
 
 # Reports
 reports/figures/

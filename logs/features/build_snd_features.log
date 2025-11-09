@@ -1,0 +1,218 @@
+D:\Study\UNIVERSITY\SENIOR YEAR\Advanced BA\final\tranx_clf\src\preprocess\_x_snd_offline.py:40: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.encoder.load_state_dict(torch.load(self.model_dir / "snd_encoder.pt", map_location="cpu"))
+2025-11-09 23:33:05 - INFO - Found 30 unique transaction dates
+2025-11-09 23:33:05 - INFO - Existing snapshots: 0 dates
+2025-11-09 23:33:05 - INFO - To process: 30 dates
+2025-11-09 23:33:05 - INFO - Processing dates: ['2025-09-01', '2025-09-02', '2025-09-03', '2025-09-04', '2025-09-05']...
+2025-11-09 23:33:05 - INFO - 
+============================================================
+2025-11-09 23:33:05 - INFO - Processing snapshot date: 2025-09-01
+2025-11-09 23:33:05 - INFO - ============================================================
+2025-11-09 23:33:06 - INFO - Found 265 active senders on 2025-09-01
+2025-11-09 23:33:06 - INFO - Processing 375 transactions (lookback: 10 days)
+2025-11-09 23:33:06 - INFO - Generated daily snapshot for 265 senders \u2192 data\feature_store\x_snd\date=2025-09-01\x_snd_user_state.parquet
+2025-11-09 23:33:06 - INFO - 
+============================================================
+2025-11-09 23:33:06 - INFO - Processing snapshot date: 2025-09-02
+2025-11-09 23:33:06 - INFO - ============================================================
+2025-11-09 23:33:06 - INFO - Found 240 active senders on 2025-09-02
+2025-11-09 23:33:06 - INFO - Processing 504 transactions (lookback: 10 days)
+2025-11-09 23:33:06 - INFO - Generated daily snapshot for 240 senders \u2192 data\feature_store\x_snd\date=2025-09-02\x_snd_user_state.parquet
+2025-11-09 23:33:06 - INFO - 
+============================================================
+2025-11-09 23:33:06 - INFO - Processing snapshot date: 2025-09-03
+2025-11-09 23:33:06 - INFO - ============================================================
+2025-11-09 23:33:06 - INFO - Found 248 active senders on 2025-09-03
+2025-11-09 23:33:06 - INFO - Processing 682 transactions (lookback: 10 days)
+2025-11-09 23:33:06 - INFO - Generated daily snapshot for 248 senders \u2192 data\feature_store\x_snd\date=2025-09-03\x_snd_user_state.parquet
+2025-11-09 23:33:06 - INFO - 
+============================================================
+2025-11-09 23:33:06 - INFO - Processing snapshot date: 2025-09-04
+2025-11-09 23:33:06 - INFO - ============================================================
+2025-11-09 23:33:06 - INFO - Found 245 active senders on 2025-09-04
+2025-11-09 23:33:06 - INFO - Processing 851 transactions (lookback: 10 days)
+2025-11-09 23:33:07 - INFO - Generated daily snapshot for 245 senders \u2192 data\feature_store\x_snd\date=2025-09-04\x_snd_user_state.parquet
+2025-11-09 23:33:07 - INFO - 
+============================================================
+2025-11-09 23:33:07 - INFO - Processing snapshot date: 2025-09-05
+2025-11-09 23:33:07 - INFO - ============================================================
+2025-11-09 23:33:07 - INFO - Found 246 active senders on 2025-09-05
+2025-11-09 23:33:07 - INFO - Processing 994 transactions (lookback: 10 days)
+2025-11-09 23:33:07 - INFO - Generated daily snapshot for 246 senders \u2192 data\feature_store\x_snd\date=2025-09-05\x_snd_user_state.parquet
+2025-11-09 23:33:07 - INFO - 
+============================================================
+2025-11-09 23:33:07 - INFO - Processing snapshot date: 2025-09-06
+2025-11-09 23:33:07 - INFO - ============================================================
+2025-11-09 23:33:07 - INFO - Found 242 active senders on 2025-09-06
+2025-11-09 23:33:07 - INFO - Processing 1109 transactions (lookback: 10 days)
+2025-11-09 23:33:07 - INFO - Generated daily snapshot for 242 senders \u2192 data\feature_store\x_snd\date=2025-09-06\x_snd_user_state.parquet
+2025-11-09 23:33:07 - INFO - 
+============================================================
+2025-11-09 23:33:07 - INFO - Processing snapshot date: 2025-09-07
+2025-11-09 23:33:07 - INFO - ============================================================
+2025-11-09 23:33:08 - INFO - Found 237 active senders on 2025-09-07
+2025-11-09 23:33:08 - INFO - Processing 1317 transactions (lookback: 10 days)
+2025-11-09 23:33:08 - INFO - Generated daily snapshot for 237 senders \u2192 data\feature_store\x_snd\date=2025-09-07\x_snd_user_state.parquet
+2025-11-09 23:33:08 - INFO - 
+============================================================
+2025-11-09 23:33:08 - INFO - Processing snapshot date: 2025-09-08
+2025-11-09 23:33:08 - INFO - ============================================================
+2025-11-09 23:33:08 - INFO - Found 254 active senders on 2025-09-08
+2025-11-09 23:33:08 - INFO - Processing 1526 transactions (lookback: 10 days)
+2025-11-09 23:33:08 - INFO - Generated daily snapshot for 254 senders \u2192 data\feature_store\x_snd\date=2025-09-08\x_snd_user_state.parquet
+2025-11-09 23:33:08 - INFO - 
+============================================================
+2025-11-09 23:33:08 - INFO - Processing snapshot date: 2025-09-09
+2025-11-09 23:33:08 - INFO - ============================================================
+2025-11-09 23:33:08 - INFO - Found 248 active senders on 2025-09-09
+2025-11-09 23:33:08 - INFO - Processing 1691 transactions (lookback: 10 days)
+2025-11-09 23:33:09 - INFO - Generated daily snapshot for 248 senders \u2192 data\feature_store\x_snd\date=2025-09-09\x_snd_user_state.parquet
+2025-11-09 23:33:09 - INFO - 
+============================================================
+2025-11-09 23:33:09 - INFO - Processing snapshot date: 2025-09-10
+2025-11-09 23:33:09 - INFO - ============================================================
+2025-11-09 23:33:09 - INFO - Found 251 active senders on 2025-09-10
+2025-11-09 23:33:09 - INFO - Processing 1869 transactions (lookback: 10 days)
+2025-11-09 23:33:09 - INFO - Generated daily snapshot for 251 senders \u2192 data\feature_store\x_snd\date=2025-09-10\x_snd_user_state.parquet
+2025-11-09 23:33:09 - INFO - 
+============================================================
+2025-11-09 23:33:09 - INFO - Processing snapshot date: 2025-09-11
+2025-11-09 23:33:09 - INFO - ============================================================
+2025-11-09 23:33:09 - INFO - Found 236 active senders on 2025-09-11
+2025-11-09 23:33:09 - INFO - Processing 1900 transactions (lookback: 10 days)
+2025-11-09 23:33:09 - INFO - Generated daily snapshot for 236 senders \u2192 data\feature_store\x_snd\date=2025-09-11\x_snd_user_state.parquet
+2025-11-09 23:33:09 - INFO - 
+============================================================
+2025-11-09 23:33:09 - INFO - Processing snapshot date: 2025-09-12
+2025-11-09 23:33:09 - INFO - ============================================================
+2025-11-09 23:33:09 - INFO - Found 214 active senders on 2025-09-12
+2025-11-09 23:33:09 - INFO - Processing 1681 transactions (lookback: 10 days)
+2025-11-09 23:33:10 - INFO - Generated daily snapshot for 214 senders \u2192 data\feature_store\x_snd\date=2025-09-12\x_snd_user_state.parquet
+2025-11-09 23:33:10 - INFO - 
+============================================================
+2025-11-09 23:33:10 - INFO - Processing snapshot date: 2025-09-13
+2025-11-09 23:33:10 - INFO - ============================================================
+2025-11-09 23:33:10 - INFO - Found 229 active senders on 2025-09-13
+2025-11-09 23:33:10 - INFO - Processing 1768 transactions (lookback: 10 days)
+2025-11-09 23:33:10 - INFO - Generated daily snapshot for 229 senders \u2192 data\feature_store\x_snd\date=2025-09-13\x_snd_user_state.parquet
+2025-11-09 23:33:10 - INFO - 
+============================================================
+2025-11-09 23:33:10 - INFO - Processing snapshot date: 2025-09-14
+2025-11-09 23:33:10 - INFO - ============================================================
+2025-11-09 23:33:10 - INFO - Found 260 active senders on 2025-09-14
+2025-11-09 23:33:10 - INFO - Processing 2093 transactions (lookback: 10 days)
+2025-11-09 23:33:11 - INFO - Generated daily snapshot for 260 senders \u2192 data\feature_store\x_snd\date=2025-09-14\x_snd_user_state.parquet
+2025-11-09 23:33:11 - INFO - 
+============================================================
+2025-11-09 23:33:11 - INFO - Processing snapshot date: 2025-09-15
+2025-11-09 23:33:11 - INFO - ============================================================
+2025-11-09 23:33:11 - INFO - Found 254 active senders on 2025-09-15
+2025-11-09 23:33:11 - INFO - Processing 2001 transactions (lookback: 10 days)
+2025-11-09 23:33:11 - INFO - Generated daily snapshot for 254 senders \u2192 data\feature_store\x_snd\date=2025-09-15\x_snd_user_state.parquet
+2025-11-09 23:33:11 - INFO - 
+============================================================
+2025-11-09 23:33:11 - INFO - Processing snapshot date: 2025-09-16
+2025-11-09 23:33:11 - INFO - ============================================================
+2025-11-09 23:33:11 - INFO - Found 253 active senders on 2025-09-16
+2025-11-09 23:33:11 - INFO - Processing 2054 transactions (lookback: 10 days)
+2025-11-09 23:33:11 - INFO - Generated daily snapshot for 253 senders \u2192 data\feature_store\x_snd\date=2025-09-16\x_snd_user_state.parquet
+2025-11-09 23:33:11 - INFO - 
+============================================================
+2025-11-09 23:33:11 - INFO - Processing snapshot date: 2025-09-17
+2025-11-09 23:33:11 - INFO - ============================================================
+2025-11-09 23:33:12 - INFO - Found 253 active senders on 2025-09-17
+2025-11-09 23:33:12 - INFO - Processing 2008 transactions (lookback: 10 days)
+2025-11-09 23:33:12 - INFO - Generated daily snapshot for 253 senders \u2192 data\feature_store\x_snd\date=2025-09-17\x_snd_user_state.parquet
+2025-11-09 23:33:12 - INFO - 
+============================================================
+2025-11-09 23:33:12 - INFO - Processing snapshot date: 2025-09-18
+2025-11-09 23:33:12 - INFO - ============================================================
+2025-11-09 23:33:12 - INFO - Found 243 active senders on 2025-09-18
+2025-11-09 23:33:12 - INFO - Processing 1982 transactions (lookback: 10 days)
+2025-11-09 23:33:12 - INFO - Generated daily snapshot for 243 senders \u2192 data\feature_store\x_snd\date=2025-09-18\x_snd_user_state.parquet
+2025-11-09 23:33:12 - INFO - 
+============================================================
+2025-11-09 23:33:12 - INFO - Processing snapshot date: 2025-09-19
+2025-11-09 23:33:12 - INFO - ============================================================
+2025-11-09 23:33:12 - INFO - Found 240 active senders on 2025-09-19
+2025-11-09 23:33:12 - INFO - Processing 1900 transactions (lookback: 10 days)
+2025-11-09 23:33:13 - INFO - Generated daily snapshot for 240 senders \u2192 data\feature_store\x_snd\date=2025-09-19\x_snd_user_state.parquet
+2025-11-09 23:33:13 - INFO - 
+============================================================
+2025-11-09 23:33:13 - INFO - Processing snapshot date: 2025-09-20
+2025-11-09 23:33:13 - INFO - ============================================================
+2025-11-09 23:33:13 - INFO - Found 249 active senders on 2025-09-20
+2025-11-09 23:33:13 - INFO - Processing 1982 transactions (lookback: 10 days)
+2025-11-09 23:33:13 - INFO - Generated daily snapshot for 249 senders \u2192 data\feature_store\x_snd\date=2025-09-20\x_snd_user_state.parquet
+2025-11-09 23:33:13 - INFO - 
+============================================================
+2025-11-09 23:33:13 - INFO - Processing snapshot date: 2025-09-21
+2025-11-09 23:33:13 - INFO - ============================================================
+2025-11-09 23:33:13 - INFO - Found 242 active senders on 2025-09-21
+2025-11-09 23:33:13 - INFO - Processing 1930 transactions (lookback: 10 days)
+2025-11-09 23:33:14 - INFO - Generated daily snapshot for 242 senders \u2192 data\feature_store\x_snd\date=2025-09-21\x_snd_user_state.parquet
+2025-11-09 23:33:14 - INFO - 
+============================================================
+2025-11-09 23:33:14 - INFO - Processing snapshot date: 2025-09-22
+2025-11-09 23:33:14 - INFO - ============================================================
+2025-11-09 23:33:14 - INFO - Found 248 active senders on 2025-09-22
+2025-11-09 23:33:14 - INFO - Processing 2001 transactions (lookback: 10 days)
+2025-11-09 23:33:14 - INFO - Generated daily snapshot for 248 senders \u2192 data\feature_store\x_snd\date=2025-09-22\x_snd_user_state.parquet
+2025-11-09 23:33:14 - INFO - 
+============================================================
+2025-11-09 23:33:14 - INFO - Processing snapshot date: 2025-09-23
+2025-11-09 23:33:14 - INFO - ============================================================
+2025-11-09 23:33:14 - INFO - Found 249 active senders on 2025-09-23
+2025-11-09 23:33:14 - INFO - Processing 1949 transactions (lookback: 10 days)
+2025-11-09 23:33:15 - INFO - Generated daily snapshot for 249 senders \u2192 data\feature_store\x_snd\date=2025-09-23\x_snd_user_state.parquet
+2025-11-09 23:33:15 - INFO - 
+============================================================
+2025-11-09 23:33:15 - INFO - Processing snapshot date: 2025-09-24
+2025-11-09 23:33:15 - INFO - ============================================================
+2025-11-09 23:33:15 - INFO - Found 235 active senders on 2025-09-24
+2025-11-09 23:33:15 - INFO - Processing 1882 transactions (lookback: 10 days)
+2025-11-09 23:33:15 - INFO - Generated daily snapshot for 235 senders \u2192 data\feature_store\x_snd\date=2025-09-24\x_snd_user_state.parquet
+2025-11-09 23:33:15 - INFO - 
+============================================================
+2025-11-09 23:33:15 - INFO - Processing snapshot date: 2025-09-25
+2025-11-09 23:33:15 - INFO - ============================================================
+2025-11-09 23:33:15 - INFO - Found 258 active senders on 2025-09-25
+2025-11-09 23:33:15 - INFO - Processing 2087 transactions (lookback: 10 days)
+2025-11-09 23:33:16 - INFO - Generated daily snapshot for 258 senders \u2192 data\feature_store\x_snd\date=2025-09-25\x_snd_user_state.parquet
+2025-11-09 23:33:16 - INFO - 
+============================================================
+2025-11-09 23:33:16 - INFO - Processing snapshot date: 2025-09-26
+2025-11-09 23:33:16 - INFO - ============================================================
+2025-11-09 23:33:16 - INFO - Found 256 active senders on 2025-09-26
+2025-11-09 23:33:16 - INFO - Processing 2087 transactions (lookback: 10 days)
+2025-11-09 23:33:16 - INFO - Generated daily snapshot for 256 senders \u2192 data\feature_store\x_snd\date=2025-09-26\x_snd_user_state.parquet
+2025-11-09 23:33:16 - INFO - 
+============================================================
+2025-11-09 23:33:16 - INFO - Processing snapshot date: 2025-09-27
+2025-11-09 23:33:16 - INFO - ============================================================
+2025-11-09 23:33:16 - INFO - Found 226 active senders on 2025-09-27
+2025-11-09 23:33:16 - INFO - Processing 1826 transactions (lookback: 10 days)
+2025-11-09 23:33:17 - INFO - Generated daily snapshot for 226 senders \u2192 data\feature_store\x_snd\date=2025-09-27\x_snd_user_state.parquet
+2025-11-09 23:33:17 - INFO - 
+============================================================
+2025-11-09 23:33:17 - INFO - Processing snapshot date: 2025-09-28
+2025-11-09 23:33:17 - INFO - ============================================================
+2025-11-09 23:33:17 - INFO - Found 241 active senders on 2025-09-28
+2025-11-09 23:33:17 - INFO - Processing 1932 transactions (lookback: 10 days)
+2025-11-09 23:33:17 - INFO - Generated daily snapshot for 241 senders \u2192 data\feature_store\x_snd\date=2025-09-28\x_snd_user_state.parquet
+2025-11-09 23:33:17 - INFO - 
+============================================================
+2025-11-09 23:33:17 - INFO - Processing snapshot date: 2025-09-29
+2025-11-09 23:33:17 - INFO - ============================================================
+2025-11-09 23:33:17 - INFO - Found 237 active senders on 2025-09-29
+2025-11-09 23:33:17 - INFO - Processing 1959 transactions (lookback: 10 days)
+2025-11-09 23:33:18 - INFO - Generated daily snapshot for 237 senders \u2192 data\feature_store\x_snd\date=2025-09-29\x_snd_user_state.parquet
+2025-11-09 23:33:18 - INFO - 
+============================================================
+2025-11-09 23:33:18 - INFO - Processing snapshot date: 2025-09-30
+2025-11-09 23:33:18 - INFO - ============================================================
+2025-11-09 23:33:18 - INFO - Found 248 active senders on 2025-09-30
+2025-11-09 23:33:18 - INFO - Processing 1973 transactions (lookback: 10 days)
+2025-11-09 23:33:18 - INFO - Generated daily snapshot for 248 senders \u2192 data\feature_store\x_snd\date=2025-09-30\x_snd_user_state.parquet
+2025-11-09 23:33:18 - INFO - Created new cumulative store with 7347 senders
+2025-11-09 23:33:18 - INFO - Cumulative store saved \u2192 data\feature_store\x_snd\date=ALL\x_snd_user_state.parquet
