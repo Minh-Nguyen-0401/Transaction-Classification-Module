@@ -89,3 +89,4 @@ Thumbs.db
 !models/.gitkeep
 !logs/.gitkeep
 !reports/figures/.gitkeep
+/models

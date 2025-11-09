@@ -1,0 +1,4 @@
+[core]
+    remote = tranx_rm
+['remote "tranx_rm"']
+    url = ../../dvc-storage/tranx_clf_data
