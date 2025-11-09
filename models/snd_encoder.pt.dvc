@@ -1,0 +1,5 @@
+outs:
+- md5: 84fb0fe08c16609a1c438d3754c731d8
+  size: 246064
+  hash: md5
+  path: snd_encoder.pt

@@ -1,0 +1,5 @@
+outs:
+- md5: a736cb9e02978b99e48c78a107adb7db
+  size: 96
+  hash: md5
+  path: cls_label_map.pkl

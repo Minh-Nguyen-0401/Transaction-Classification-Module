@@ -1,0 +1,5 @@
+outs:
+- md5: c9780a134cf82b352a9b4e904ad79c23
+  size: 257
+  hash: md5
+  path: snd_amount_quantiles.pkl

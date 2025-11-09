@@ -1,0 +1,5 @@
+outs:
+- md5: acd76bb6ddc7b761e0cda929d340895f
+  size: 1268654
+  hash: md5
+  path: tri_tower_classifier.pt

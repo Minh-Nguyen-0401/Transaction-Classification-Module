@@ -97,6 +97,3 @@ Thumbs.db
 # Keep DVC tracking files
 !/data/raw.dvc
 !/models.dvc
-
-/models/cc.vi.300.bin
-/models
