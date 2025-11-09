@@ -1,0 +1,42 @@
+{
+  "BIL": {
+    "index": 0,
+    "name": "Bills & Utilities"
+  },
+  "FOO": {
+    "index": 1,
+    "name": "Food & Drink"
+  },
+  "TRN": {
+    "index": 2,
+    "name": "Transport & Mobility"
+  },
+  "HLT": {
+    "index": 3,
+    "name": "Health & Wellness"
+  },
+  "INS": {
+    "index": 4,
+    "name": "Insurance & Taxes"
+  },
+  "SHP": {
+    "index": 5,
+    "name": "Shopping & Retail"
+  },
+  "ENT": {
+    "index": 6,
+    "name": "Entertainment & Leisure"
+  },
+  "EDU": {
+    "index": 7,
+    "name": "Education & Learning"
+  },
+  "FIN": {
+    "index": 8,
+    "name": "Financial Services"
+  },
+  "OTH": {
+    "index": 9,
+    "name": "Other"
+  }
+}
