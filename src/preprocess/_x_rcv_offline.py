@@ -7,8 +7,15 @@ from sklearn.feature_extraction import FeatureHasher
 import argparse
 from datetime import datetime
 import sys
+import logging
 
 ROOT = Path(__file__).resolve().parents[2]
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    handlers=[logging.StreamHandler()])
+logger = logging.getLogger(__name__)
 
 class RecipientFeatureGenerator:
     """Offline recipient feature generator using SVD and metadata hashing"""
@@ -35,26 +42,23 @@ class RecipientFeatureGenerator:
             )
         )
         
-        # Step 1: Find recipients active on snapshot_date
         active_recipients = tx_df[tx_df["txn_date"] == snapshot_date]["recipient_canon_id"].unique()
-        print(f"Found {len(active_recipients)} active recipients on {snapshot_date}")
+        logger.info(f"Found {len(active_recipients)} active recipients on {snapshot_date}")
         
-        # Step 2: Get lookback window
         lookback_start = snapshot_date - pd.Timedelta(days=self.lookback_days)
         
-        # Step 3: Filter data - only active recipients, only within lookback window
         tx_filtered = tx_df[
             (tx_df["recipient_canon_id"].isin(active_recipients)) &
             (tx_df["txn_date"] >= lookback_start) &
             (tx_df["txn_date"] <= snapshot_date)
         ].copy()
         
-        print(f"Processing {len(tx_filtered)} transactions (lookback: {self.lookback_days} days)")
+        logger.info(f"Processing {len(tx_filtered)} transactions (lookback: {self.lookback_days} days)")
         
         agg = tx_filtered.groupby(["sender_id", "recipient_canon_id"], as_index=False)["amount"].sum()
         
         users = agg["sender_id"].unique()
-        items = active_recipients  # Only active recipients
+        items = active_recipients
         
         uid_map = {u: i for i, u in enumerate(users)}
         iid_map = {v: i for i, v in enumerate(items)}
@@ -139,20 +143,18 @@ class RecipientFeatureGenerator:
             if snapshot_path.exists():
                 existing_dates.add(date_str)
         
-        # Process only dates without snapshots
         dates_to_process = [d for d in all_dates_str if d not in existing_dates]
         
-        print(f"Found {len(all_dates_str)} unique transaction dates")
-        print(f"Existing snapshots: {len(existing_dates)} dates")
-        print(f"To process: {len(dates_to_process)} dates")
+        logger.info(f"Found {len(all_dates_str)} unique transaction dates")
+        logger.info(f"Existing snapshots: {len(existing_dates)} dates")
+        logger.info(f"To process: {len(dates_to_process)} dates")
         
         if dates_to_process:
-            print(f"Processing dates: {dates_to_process[:5]}{'...' if len(dates_to_process) > 5 else ''}")
+            logger.info(f"Processing dates: {dates_to_process[:5]}{'...' if len(dates_to_process) > 5 else ''}")
         
         return dates_to_process
     
     def process_and_save(self, data_dir, output_dir, snapshot_date=None):
-        """Process all data and save to feature store"""
         data_dir = Path(data_dir)
         
         tx_df = pd.read_parquet(data_dir / "transactions_landing.parquet")
@@ -164,14 +166,14 @@ class RecipientFeatureGenerator:
         dates_to_process = self._get_dates_to_process(tx_df, output_dir, snapshot_date)
         
         if not dates_to_process:
-            print("No new dates to process. All snapshots already exist.")
+            logger.info("No new dates to process. All snapshots already exist.")
             return None
         
         all_feature_dfs = []
         for date_str in dates_to_process:
-            print(f"\n{'='*60}")
-            print(f"Processing snapshot date: {date_str}")
-            print(f"{'='*60}")
+            logger.info(f"\n{'='*60}")
+            logger.info(f"Processing snapshot date: {date_str}")
+            logger.info(f"{'='*60}")
             
             items, embeddings = self.generate_features(tx_df, rec_df, mer_df, per_df, date_str)
             
@@ -185,8 +187,8 @@ class RecipientFeatureGenerator:
             daily_path = Path(output_dir) / f"date={date_str}" / "x_rcv_entity_state.parquet"
             daily_path.parent.mkdir(parents=True, exist_ok=True)
             feature_df.to_parquet(daily_path, index=False)
-            print(f"Generated daily snapshot for {len(items)} recipients → {daily_path}")
-            print(f"  SVD dim: {self.svd_dim}, Hash dim: {self.hash_dim}, Total: {embeddings.shape[1]}")
+            logger.info(f"Generated daily snapshot for {len(items)} recipients -> {daily_path}")
+            logger.info(f"SVD dim: {self.svd_dim}, Hash dim: {self.hash_dim}, Total: {embeddings.shape[1]}")
             
             all_feature_dfs.append(feature_df)
         
@@ -205,13 +207,13 @@ class RecipientFeatureGenerator:
             existing_df = existing_df[~existing_df["recipient_canon_id"].isin(all_updated_items)]
             updated_df = pd.concat([existing_df, combined_new_df], ignore_index=True)
             
-            print(f"\nUpdated cumulative store: {len(existing_df)} existing + {len(combined_new_df)} new/updated = {len(updated_df)} total")
+            logger.info(f"Updated cumulative store: {len(existing_df)} existing + {len(combined_new_df)} new/updated = {len(updated_df)} total")
         else:
             updated_df = combined_new_df
-            print(f"\nCreated new cumulative store with {len(combined_new_df)} recipients")
+            logger.info(f"Created new cumulative store with {len(combined_new_df)} recipients")
         
         updated_df.to_parquet(cumulative_path, index=False)
-        print(f"Cumulative store saved → {cumulative_path}")
+        logger.info(f"Cumulative store saved -> {cumulative_path}")
         
         return combined_new_df
 

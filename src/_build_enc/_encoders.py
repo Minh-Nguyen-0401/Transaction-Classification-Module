@@ -1,6 +1,9 @@
 import torch
 from torch import nn
 from tqdm import tqdm
+import logging
+
+logger = logging.getLogger(__name__)
 
 class CtxMLP(nn.Module):
     def __init__(self, d_in, d_hidden=256, d_out=128, p_drop=0.2):
@@ -22,7 +25,11 @@ class CtxAutoEncoder(nn.Module):
         super().__init__()
         self.encoder = encoder
         self.d_in = encoder.enc[0].in_features
-        self.d_out = encoder.enc[-1].out_features
+        # Find the last Linear layer in the encoder to get output dimension
+        for layer in reversed(encoder.enc):
+            if isinstance(layer, nn.Linear):
+                self.d_out = layer.out_features
+                break
         self.decoder = nn.Sequential(
             nn.Linear(self.d_out, d_hidden),
             nn.ReLU(),
@@ -119,12 +126,12 @@ class CtxTrainer:
                 if isinstance(pbar_epochs, tqdm):
                     pbar_epochs.write(msg)
                 else:
-                    print(msg)
+                    logger.info(msg)
         
         if val_dl is not None and self.best_state is not None:
             self.model.load_state_dict(self.best_state)
             if verbose:
-                print(f"Restored best model with val loss: {self.best_val_loss:.6f}")
+                logger.info(f"Restored best model with val loss: {self.best_val_loss:.6f}")
         
         return self.history
     
@@ -303,15 +310,15 @@ class SndTrainer:
                                 pbar_epochs.write(msg)
                                 pbar_epochs.write(f"Early stopping at epoch {epoch+1}")
                             else:
-                                print(msg)
-                                print(f"Early stopping at epoch {epoch+1}")
+                                logger.info(msg)
+                                logger.info(f"Early stopping at epoch {epoch+1}")
                         break
             
             if verbose:
                 if isinstance(pbar_epochs, tqdm):
                     pbar_epochs.write(msg)
                 else:
-                    print(msg)
+                    logger.info(msg)
         
         # Restore best model
         if val_dl is not None and self.best_state is not None:
@@ -319,7 +326,7 @@ class SndTrainer:
             self.head_tranx.load_state_dict(self.best_state['head_tranx'])
             self.head_amount.load_state_dict(self.best_state['head_amount'])
             if verbose:
-                print(f"Restored best model with val loss: {self.best_val_loss:.6f}")
+                logger.info(f"Restored best model with val loss: {self.best_val_loss:.6f}")
         
         return self.history
     

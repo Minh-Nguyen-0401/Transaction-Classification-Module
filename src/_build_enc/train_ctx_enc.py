@@ -8,11 +8,18 @@ import joblib
 from pathlib import Path
 import sys
 import argparse
+import logging
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src._build_enc._encoders import CtxMLP, CtxAutoEncoder, CtxTrainer
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    handlers=[logging.StreamHandler()])
+logger = logging.getLogger(__name__)
 
 
 def load_fasttext_model(ft_path):
@@ -53,18 +60,17 @@ def create_dataloader(X, batch_size=512):
 
 
 def print_model_params(ctx_ae, enc):
-    """Print parameter counts"""
     total_params = sum(p.numel() for p in ctx_ae.parameters() if p.requires_grad)
     params_enc = sum(p.numel() for p in enc.parameters() if p.requires_grad)
     params_dec = sum(p.numel() for p in ctx_ae.decoder.parameters() if p.requires_grad)
-    print(f"Total trainable parameters: {total_params} (Encoder: {params_enc}, Decoder: {params_dec})")
+    logger.info(f"Total trainable parameters: {total_params} (Encoder: {params_enc}, Decoder: {params_dec})")
 
 
 def main(args):
     outdir = Path(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
     
-    df = pd.read_csv(args.src)
+    df = pd.read_parquet(args.src)
     ft_model = load_fasttext_model(args.ft_path)
     
     X, scaler, tt_ohe, ch_ohe = prepare_features(df, ft_model)
@@ -85,13 +91,13 @@ def main(args):
     joblib.dump(tt_ohe, outdir/"ctx_tt_ohe.pkl")
     joblib.dump(ch_ohe, outdir/"ctx_ch_ohe.pkl")
     
-    print(f"\nModels saved to {outdir}")
+    logger.info(f"Models saved to {outdir}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train Context Encoder with autoencoder")
     parser.add_argument("--src", type=str, 
-                        default=str(ROOT / "data" / "raw" / "train_ctx.csv"),
+                        default=str(ROOT / "data" / "raw" / "transactions_landing.parquet"),
                         help="Path to source CSV file")
     parser.add_argument("--ft-path", type=str, 
                         default=str(ROOT / "models" / "cc.vi.300.bin"),

@@ -8,15 +8,20 @@ from pathlib import Path
 import sys
 import argparse
 from datetime import datetime, timedelta
+import logging
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.train_clf._main_clf import TriTowerClassifier, ClassifierTrainer
 
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    handlers=[logging.StreamHandler()])
+logger = logging.getLogger(__name__)
 
 def load_feature_snapshots(feature_store_dir, feature_type, date_list):
-    """Load multiple feature snapshots and concatenate them"""
     feature_dir = Path(feature_store_dir) / feature_type
     all_features = []
     
@@ -41,9 +46,17 @@ def load_feature_snapshots(feature_store_dir, feature_type, date_list):
         return None
 
 
-def load_and_merge_features(train_csv, ctx_emb_path, feature_store_dir, txn_date_col, lookback_days=1):
-    """Load training data and merge with all features using date-based mapping"""
-    df = pd.read_csv(train_csv)
+def load_and_merge_features(ctx_emb_path, feature_store_dir, txn_date_col, lookback_days=1):
+    """Note: ctx_emb_path must be generated with --mode train"""
+    df = pd.read_parquet(ctx_emb_path)
+    
+    required_cols = ["txn_id", "sender_id", "recipient_entity_id", txn_date_col, "label_l1"]
+    missing_cols = [col for col in required_cols if col not in df.columns]
+    if missing_cols:
+        raise ValueError(
+            f"Missing required columns: {missing_cols}. "
+            f"Make sure to generate ctx_emb with --mode train flag."
+        )
     
     df[txn_date_col] = pd.to_datetime(df[txn_date_col])
     df["_feature_date"] = (df[txn_date_col] - timedelta(days=lookback_days)).dt.strftime("%Y-%m-%d")
@@ -53,9 +66,9 @@ def load_and_merge_features(train_csv, ctx_emb_path, feature_store_dir, txn_date
     print(f"Transaction date range: {df[txn_date_col].min().date()} to {df[txn_date_col].max().date()}")
     print(f"Feature date range needed: {min_feature_date} to {max_feature_date} (lookback={lookback_days} days)")
     
-    ctx = pd.read_parquet(ctx_emb_path)
-    df = df.merge(ctx, on="txn_id", how="left")
-    print(f"Merged context embeddings: {len(ctx)} transactions")
+    ctx_cols = [c for c in df.columns if c.startswith("ctx_emb_")]
+    print(f"Loaded context embeddings: {len(ctx_cols)} dimensions")
+    ctx = df[["txn_id"] + ctx_cols]
     
     unique_dates = sorted(df["_feature_date"].unique())
     print(f"Loading {len(unique_dates)} daily snapshots for sender and recipient features")
@@ -83,10 +96,15 @@ def load_and_merge_features(train_csv, ctx_emb_path, feature_store_dir, txn_date
 
 
 def prepare_features(df, ctx, snd, rcv):
-    """Extract and concatenate feature columns"""
     cols_ctx = [c for c in ctx.columns if c.startswith("ctx_emb_")]
     cols_snd = [c for c in snd.columns if c.startswith("snd_emb_")] if snd is not None else []
+    if cols_snd == []:
+        print("Warning: No sender features found, proceeding without sender embeddings")
+        raise
     cols_rcv = [c for c in rcv.columns if c.startswith("rcv_emb_")] if rcv is not None else []
+    if cols_rcv == []:
+        print("Warning: No recipient features found, proceeding without recipient embeddings")
+        raise
     
     features = []
     if cols_ctx:
@@ -104,27 +122,57 @@ def prepare_features(df, ctx, snd, rcv):
 
 
 def prepare_labels(df, label_map_path):
-    """Encode labels using predefined label map"""
     import json
     
     with open(label_map_path, 'r', encoding='utf-8') as f:
         label_map = json.load(f)
     
-    # Extract index mapping: {acronym: index}
     y2i = {key: value["index"] for key, value in label_map.items()}
-    
-    # Map labels to indices
     y = df["label_l1"].map(y2i).fillna(-1).astype(int).to_numpy()
-    
     valid_mask = y >= 0
     
     print(f"Labels: {len(y2i)} classes from label map, {valid_mask.sum()} valid samples, {(~valid_mask).sum()} unknown labels")
     return y, y2i, valid_mask
 
 
-def create_dataloaders(X, y, batch_size=512, val_split=0.2):
-    """Create train and validation dataloaders"""
-    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=val_split, stratify=y, random_state=42)
+def create_dataloaders(X, y, dates, batch_size=512, val_split=0.2, split_method='date'):
+    """
+    Create train/val dataloaders with date-based or random split.
+    
+    Args:
+        X: Features array
+        y: Labels array
+        dates: Transaction dates (pd.Series or np.array)
+        batch_size: Batch size for dataloaders
+        val_split: Validation split ratio (0.2 = 20% validation)
+        split_method: 'date' for temporal split, 'random' for stratified random split
+    """
+    if split_method == 'date':
+        # Temporal split: last X% of dates for validation
+        dates_sorted = pd.Series(dates).sort_values()
+        split_date = dates_sorted.quantile(1 - val_split)
+        
+        train_mask = dates < split_date
+        val_mask = dates >= split_date
+        
+        X_train, y_train = X[train_mask], y[train_mask]
+        X_val, y_val = X[val_mask], y[val_mask]
+        
+        train_dates = dates[train_mask]
+        val_dates = dates[val_mask]
+        
+        logger.info(f"Date-based split:")
+        logger.info(f"  Train period: {pd.Series(train_dates).min()} -> {pd.Series(train_dates).max()} ({len(X_train)} samples)")
+        logger.info(f"  Val period: {pd.Series(val_dates).min()} -> {pd.Series(val_dates).max()} ({len(X_val)} samples)")
+        
+    elif split_method == 'random':
+        # Random stratified split
+        X_train, X_val, y_train, y_val = train_test_split(
+            X, y, test_size=val_split, stratify=y, random_state=42
+        )
+        logger.info(f"Random stratified split: Train={len(X_train)}, Val={len(X_val)}")
+    else:
+        raise ValueError(f"Unknown split_method: {split_method}. Use 'date' or 'random'")
     
     train_ds = TensorDataset(torch.tensor(X_train, dtype=torch.float32), 
                              torch.tensor(y_train, dtype=torch.long))
@@ -134,8 +182,6 @@ def create_dataloaders(X, y, batch_size=512, val_split=0.2):
     train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
     val_dl = DataLoader(val_ds, batch_size=batch_size, shuffle=False)
     
-    print(f"Train: {len(train_ds)} samples, Val: {len(val_ds)} samples")
-    
     return train_dl, val_dl
 
 
@@ -144,9 +190,9 @@ def main(args):
     output_dir.mkdir(parents=True, exist_ok=True)
     
     print(f"Loading training data with lookback={args.lookback_days} days for features")
+    print(f"Note: Make sure {args.ctx_emb_path} was generated with --mode train")
     
     df, ctx, snd, rcv = load_and_merge_features(
-        args.train_csv, 
         args.ctx_emb_path,
         args.feature_store_dir,
         txn_date_col=args.txn_date_col,
@@ -158,8 +204,14 @@ def main(args):
     
     X = X[valid_mask]
     y = y[valid_mask]
+    dates = df[args.txn_date_col].values[valid_mask]
     
-    train_dl, val_dl = create_dataloaders(X, y, batch_size=args.batch_size, val_split=args.val_split)
+    train_dl, val_dl = create_dataloaders(
+        X, y, dates, 
+        batch_size=args.batch_size, 
+        val_split=args.val_split,
+        split_method=args.split_method
+    )
     
     model = TriTowerClassifier(
         d_in=X.shape[1], 
@@ -182,12 +234,9 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train tri-tower classifier")
-    parser.add_argument("--train-csv", type=str,
-                        default=str(ROOT / "data" / "raw" / "train_supervised.csv"),
-                        help="Training CSV file")
     parser.add_argument("--ctx-emb-path", type=str,
                         default=str(ROOT / "data" / "processed" / "ctx_emb.parquet"),
-                        help="Context embeddings parquet file")
+                        help="Context embeddings parquet file (generated with --mode train)")
     parser.add_argument("--feature-store-dir", type=str,
                         default=str(ROOT / "data" / "feature_store"),
                         help="Feature store directory")
@@ -205,6 +254,8 @@ if __name__ == "__main__":
                         help="Batch size")
     parser.add_argument("--val-split", type=float, default=0.2,
                         help="Validation split ratio")
+    parser.add_argument("--split-method", type=str, default="date", choices=["date", "random"],
+                        help="Split method: 'date' for temporal split (recommended), 'random' for stratified split")
     parser.add_argument("--hidden-dims", type=int, nargs="+", default=[512, 256],
                         help="Hidden layer dimensions")
     parser.add_argument("--dropout-rates", type=float, nargs="+", default=[0.3, 0.2],

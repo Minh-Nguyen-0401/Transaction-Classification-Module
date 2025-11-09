@@ -137,7 +137,7 @@ class ClassifierTrainer:
                     self.best_val_loss = val_loss
                     self.best_state = {k: v.cpu().clone() for k, v in self.model.state_dict().items()}
                     patience_counter = 0
-                    msg += " ✓ BEST"
+                    msg += " [BEST]"
                 else:
                     patience_counter += 1
                     if patience_counter >= patience:

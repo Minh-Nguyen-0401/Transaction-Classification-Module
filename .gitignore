@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Data files (tracked by DVC)
+data/raw/*.parquet
+data/raw/*.csv
+data/processed/*.parquet
+data/processed/*.csv
+data/external/
+data/feature_store/
+
+# Models (tracked by DVC)
+models/*.pt
+models/*.pkl
+models/*.bin
+models/*.h5
+models/*.pth
+
+# Logs
+logs/
+*.log
+
+# Reports
+reports/figures/
+reports/*.html
+reports/*.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+
+# DVC
+/data/raw/.gitignore
+/data/processed/.gitignore
+/data/feature_store/.gitignore
+/models/.gitignore
+
+# Keep directory structure but ignore contents
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+!data/feature_store/.gitkeep
+!models/.gitkeep
+!logs/.gitkeep
+!reports/figures/.gitkeep

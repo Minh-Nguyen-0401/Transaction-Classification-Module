@@ -6,11 +6,20 @@ import joblib
 from pathlib import Path
 import sys
 import argparse
+import warnings
+import logging
+warnings.filterwarnings("ignore")
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src._build_enc._encoders import CtxMLP
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    handlers=[logging.StreamHandler()])
+logger = logging.getLogger(__name__)
 
 
 class CtxEmbedder:
@@ -65,11 +74,14 @@ class CtxEmbedder:
         
         return h
     
-    def process_file(self, input_path, out_parquet):
-        """Process input file (CSV or Parquet) and save embeddings to parquet"""
+    def process_file(self, input_path, out_parquet, mode='inference'):
+        """Process input file and save embeddings to parquet
+        
+        Args:
+            mode: 'train' includes labels and metadata, 'inference' for embeddings only
+        """
         input_path = Path(input_path)
         
-        # Auto-detect file type
         if input_path.suffix.lower() == '.parquet':
             df = pd.read_parquet(input_path)
         elif input_path.suffix.lower() == '.csv':
@@ -82,17 +94,28 @@ class CtxEmbedder:
         out = pd.DataFrame(embeddings, columns=[f"ctx_emb_{i+1}" for i in range(embeddings.shape[1])])
         out.insert(0, "txn_id", df["txn_id"].astype(str))
         
+        if mode == 'train':
+            out["txn_date"] = pd.to_datetime(df["txn_time_utc"]).dt.date
+            out["sender_id"] = df["sender_id"]
+            out["recipient_entity_id"] = df["recipient_entity_id"]
+            
+            if "category" in df.columns:
+                out["label_l1"] = df["category"]
+                logger.info(f"Included label column: 'label_l1' (from 'category')")
+            
+            logger.info(f"Training mode: included txn_date, sender_id, recipient_entity_id, label_l1")
+        
         out_path = Path(out_parquet)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out.to_parquet(out_path, index=False)
         
-        print(f"Processed {len(df)} transactions → {out_path}")
+        logger.info(f"Processed {len(df)} transactions -> {out_path}")
         return out
 
 
 def main(args):
     embedder = CtxEmbedder(args.model_dir)
-    embedder.process_file(args.input, args.output)
+    embedder.process_file(args.input, args.output, mode=args.mode)
 
 
 if __name__ == "__main__":
@@ -106,6 +129,10 @@ if __name__ == "__main__":
     parser.add_argument("--model-dir", type=str, 
                         default=str(ROOT / "models"),
                         help="Directory containing model artifacts")
+    parser.add_argument("--mode", type=str, 
+                        default="inference",
+                        choices=["train", "inference"],
+                        help="Mode: 'train' includes labels and metadata, 'inference' embeddings only")
     
     args = parser.parse_args()
     main(args)

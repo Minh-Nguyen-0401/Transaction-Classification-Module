@@ -6,11 +6,18 @@ from pathlib import Path
 import sys
 import argparse
 from datetime import datetime
+import logging
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src._build_enc._encoders import SndEncoder
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    handlers=[logging.StreamHandler()])
+logger = logging.getLogger(__name__)
 
 
 class SndFeatureGenerator:
@@ -57,18 +64,17 @@ class SndFeatureGenerator:
         
         # Find senders active on snapshot_date
         active_senders = df[df["txn_date"] == snapshot_date]["sender_id"].unique()
-        print(f"Found {len(active_senders)} active senders on {snapshot_date}")
+        logger.info(f"Found {len(active_senders)} active senders on {snapshot_date}")
         
         lookback_start = snapshot_date - pd.Timedelta(days=self.lookback_days)
         
-        # only active senders, only within lookback window
         df_filtered = df[
             (df["sender_id"].isin(active_senders)) &
             (df["txn_date"] >= lookback_start) &
             (df["txn_date"] <= snapshot_date)
         ].copy()
         
-        print(f"Processing {len(df_filtered)} transactions (lookback: {self.lookback_days} days)")
+        logger.info(f"Processing {len(df_filtered)} transactions (lookback: {self.lookback_days} days)")
         
         df_filtered = self._prepare_features(df_filtered.sort_values("txn_time_utc"))
         
@@ -107,12 +113,10 @@ class SndFeatureGenerator:
         if snapshot_date is not None:
             return [snapshot_date]
         
-        # Extract all unique transaction dates
         df["txn_date"] = pd.to_datetime(df["txn_time_utc"]).dt.date
         all_dates = sorted(df["txn_date"].unique())
         all_dates_str = [d.strftime("%Y-%m-%d") for d in all_dates]
         
-        # Check which dates already have snapshots
         existing_dates = set()
         for date_str in all_dates_str:
             snapshot_path = output_dir / f"date={date_str}" / "x_snd_user_state.parquet"
@@ -121,12 +125,12 @@ class SndFeatureGenerator:
         
         dates_to_process = [d for d in all_dates_str if d not in existing_dates]
         
-        print(f"Found {len(all_dates_str)} unique transaction dates")
-        print(f"Existing snapshots: {len(existing_dates)} dates")
-        print(f"To process: {len(dates_to_process)} dates")
+        logger.info(f"Found {len(all_dates_str)} unique transaction dates")
+        logger.info(f"Existing snapshots: {len(existing_dates)} dates")
+        logger.info(f"To process: {len(dates_to_process)} dates")
         
         if dates_to_process:
-            print(f"Processing dates: {dates_to_process[:5]}{'...' if len(dates_to_process) > 5 else ''}")
+            logger.info(f"Processing dates: {dates_to_process[:5]}{'...' if len(dates_to_process) > 5 else ''}")
         
         return dates_to_process
     
@@ -134,18 +138,17 @@ class SndFeatureGenerator:
         """Process transactions and save to feature store"""
         df = pd.read_parquet(input_path)
         
-        # Determine dates to process
         dates_to_process = self._get_dates_to_process(df, output_dir, snapshot_date)
         
         if not dates_to_process:
-            print("No new dates to process. All snapshots already exist.")
+            logger.info("No new dates to process. All snapshots already exist.")
             return None
         
         all_feature_dfs = []
         for date_str in dates_to_process:
-            print(f"\n{'='*60}")
-            print(f"Processing snapshot date: {date_str}")
-            print(f"{'='*60}")
+            logger.info(f"\n{'='*60}")
+            logger.info(f"Processing snapshot date: {date_str}")
+            logger.info(f"{'='*60}")
             
             sender_ids, embeddings = self.generate_embeddings(df, date_str)
             
@@ -159,7 +162,7 @@ class SndFeatureGenerator:
             daily_path = Path(output_dir) / f"date={date_str}" / "x_snd_user_state.parquet"
             daily_path.parent.mkdir(parents=True, exist_ok=True)
             feature_df.to_parquet(daily_path, index=False)
-            print(f"Generated daily snapshot for {len(sender_ids)} senders → {daily_path}")
+            logger.info(f"Generated daily snapshot for {len(sender_ids)} senders -> {daily_path}")
             
             all_feature_dfs.append(feature_df)
         
@@ -178,13 +181,13 @@ class SndFeatureGenerator:
             existing_df = existing_df[~existing_df["sender_id"].isin(all_updated_senders)]
             updated_df = pd.concat([existing_df, combined_new_df], ignore_index=True)
             
-            print(f"\nUpdated cumulative store: {len(existing_df)} existing + {len(combined_new_df)} new/updated = {len(updated_df)} total")
+            logger.info(f"Updated cumulative store: {len(existing_df)} existing + {len(combined_new_df)} new/updated = {len(updated_df)} total")
         else:
             updated_df = combined_new_df
-            print(f"\nCreated new cumulative store with {len(combined_new_df)} senders")
+            logger.info(f"Created new cumulative store with {len(combined_new_df)} senders")
         
         updated_df.to_parquet(cumulative_path, index=False)
-        print(f"Cumulative store saved → {cumulative_path}")
+        logger.info(f"Cumulative store saved -> {cumulative_path}")
         
         return combined_new_df
 

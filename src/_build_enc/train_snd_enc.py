@@ -6,12 +6,19 @@ import joblib
 from pathlib import Path
 import sys
 import argparse
+import logging
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src._build_enc._encoders import SndEncoder, SndTrainer
 from src._build_enc._seq import SeqDS, collate_seq
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    handlers=[logging.StreamHandler()])
+logger = logging.getLogger(__name__)
 
 
 def load_and_prepare_data(src_path, tt_ohe, ch_ohe):
@@ -58,13 +65,12 @@ def create_dataloader(df, batch_size=256, maxlen=100):
 
 
 def print_model_params(enc, trainer):
-    """Print parameter counts"""
     total_params = sum(p.numel() for p in enc.parameters() if p.requires_grad)
     head_t_params = sum(p.numel() for p in trainer.head_tranx.parameters() if p.requires_grad)
     head_a_params = sum(p.numel() for p in trainer.head_amount.parameters() if p.requires_grad)
     
-    print(f"Total trainable parameters: {total_params + head_t_params + head_a_params}")
-    print(f"Encoder: {total_params}, Head_Tranx: {head_t_params}, Head_Amount: {head_a_params}")
+    logger.info(f"Total trainable parameters: {total_params + head_t_params + head_a_params}")
+    logger.info(f"Encoder: {total_params}, Head_Tranx: {head_t_params}, Head_Amount: {head_a_params}")
 
 
 def main(args):
@@ -91,7 +97,7 @@ def main(args):
     trainer.save_encoder(outdir/"snd_encoder.pt")
     joblib.dump(q, outdir/"snd_amount_quantiles.pkl")
     
-    print(f"\nModels saved to {outdir}")
+    logger.info(f"Models saved to {outdir}")
 
 
 if __name__ == "__main__":
