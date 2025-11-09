@@ -1,0 +1,7 @@
+[cache]
+    dir = ../../dvc-cache/tranx_clf
+    type = hardlink
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = ../../dvc-storage/tranx_clf_data

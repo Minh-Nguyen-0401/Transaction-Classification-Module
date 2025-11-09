@@ -81,6 +81,10 @@ Thumbs.db
 /data/feature_store/.gitignore
 /models/.gitignore
 
+.dvc/cache
+.dvc/tmp
+.dvc/plots
+
 # Keep directory structure but ignore contents
 !data/raw/.gitkeep
 !data/processed/.gitkeep
@@ -90,5 +94,9 @@ Thumbs.db
 !logs/.gitkeep
 !reports/figures/.gitkeep
 
-models/cc.vi.300.bin
+# Keep DVC tracking files
+!/data/raw.dvc
+!/models.dvc
+
+/models/cc.vi.300.bin
 /models
