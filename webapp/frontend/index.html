@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tranx Classifier Demo</title>
+  <style>
+    :root {
+      --bg: #0b1f38;
+      --card: #0f2745;
+      --accent: #18c29c;
+      --text: #e8f0fb;
+      --muted: #90a3c1;
+      --border: #1f3b5f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 20% 20%, rgba(24,194,156,0.15), transparent 25%), radial-gradient(circle at 80% 0%, rgba(24,194,156,0.12), transparent 20%), var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+    .shell {
+      width: 100%;
+      max-width: 960px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .brand .dot {
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 13px; }
+    textarea, select, input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #0c1f37;
+      color: var(--text);
+      font-size: 14px;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    .btn {
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #18c29c, #11a77f);
+      color: #062130;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(24,194,156,0.4);
+      transition: transform 0.05s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .status-board {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .status-card {
+      border: 1px solid var(--border);
+      background: #0c1f37;
+      padding: 12px;
+      border-radius: 10px;
+      min-height: 110px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .success { color: #1ad2a4; }
+    .fail { color: #ff7b7b; }
+    .skipped { color: #b5c7e3; }
+    .pill.success { background: rgba(26,210,164,0.1); }
+    .pill.fail { background: rgba(255,123,123,0.12); }
+    .pill.skipped { background: rgba(181,199,227,0.1); }
+    .muted { color: var(--muted); font-size: 13px; }
+    .final-box {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(24,194,156,0.15), rgba(12,31,55,0.9));
+    }
+    .final-label {
+      font-size: 22px;
+      font-weight: 800;
+      color: #18c29c;
+    }
+    .loader {
+      border: 2px solid #0c1f37;
+      border-top: 2px solid #18c29c;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg);} }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="header">
+      <div class="brand"><span class="dot"></span>Tranx Classifier</div>
+      <div class="muted">Real-time tri-layer decision · demo</div>
+    </div>
+    <div class="card">
+      <form id="txn-form">
+        <label>Nội dung</label>
+        <textarea name="message" required placeholder="Nhập nội dung chuyển khoản..."></textarea>
+
+        <div class="grid">
+          <div>
+            <label>Số tiền</label>
+            <input type="number" name="amount" min="1" step="any" value="100000" required />
+          </div>
+          <div>
+            <label>Recipient</label>
+            <select name="recipient_entity_id" id="recipient-select"></select>
+          </div>
+          <div>
+            <label>Sender (mặc định hệ thống)</label>
+            <select name="sender_id" id="sender-select"></select>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:12px;">
+            <button class="btn" type="submit">Chuyển khoản &amp; phân loại</button>
+          </div>
+        </div>
+      </form>
+
+      <div id="result" style="margin-top:12px;" class="muted">Nhập và bấm để xem kết quả từng layer.</div>
+      <div class="status-board" id="status-board" style="display:none;">
+        <div class="status-card" id="card-l1"></div>
+        <div class="status-card" id="card-l2"></div>
+        <div class="status-card" id="card-l3"></div>
+      </div>
+      <div class="final-box" id="final-box" style="display:none;">
+        <div class="muted">Kết quả cuối</div>
+        <div class="final-label" id="final-label"></div>
+        <div class="muted" id="final-meta"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadOptions() {
+      const res = await fetch('/options');
+      const data = await res.json();
+      const rSel = document.getElementById('recipient-select');
+      const sSel = document.getElementById('sender-select');
+      rSel.innerHTML = '';
+      sSel.innerHTML = '';
+      data.recipients.forEach(opt => {
+        const o = document.createElement('option');
+        o.value = opt.code;
+        o.text = `${opt.display_name} (${opt.code})`;
+        rSel.appendChild(o);
+      });
+      data.senders.forEach(opt => {
+        const o = document.createElement('option');
+        o.value = opt.code;
+        o.text = opt.display_name;
+        sSel.appendChild(o);
+      });
+      if (data.default_recipient) rSel.value = data.default_recipient;
+      if (data.default_sender) sSel.value = data.default_sender;
+    }
+
+    function renderLayerCard(title, lr) {
+      const statusClass = lr.status || 'skipped';
+      const pill = `<span class="pill ${statusClass}">${statusClass.toUpperCase()}</span>`;
+      const label = lr.label ? `<div><strong>Label:</strong> ${lr.label}</div>` : '';
+      const conf = lr.confidence !== null && lr.confidence !== undefined ? `<div><strong>Conf:</strong> ${lr.confidence.toFixed(3)}</div>` : '';
+      const detail = lr.detail ? `<div class="muted">${lr.detail}</div>` : '';
+      return `<div>${title}</div>${pill}${label}${conf}${detail}`;
+    }
+
+    document.getElementById('txn-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const payload = Object.fromEntries(formData.entries());
+      payload.amount = Number(payload.amount);
+      const box = document.getElementById('result');
+      box.innerHTML = '<span class="loader"></span>Đang xử lý...';
+
+      const res = await fetch('/classify', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        box.innerHTML = `<span class="fail">Error: ${res.status}</span>`;
+        return;
+      }
+      const data = await res.json();
+      document.getElementById('status-board').style.display = 'grid';
+      document.getElementById('card-l1').innerHTML = renderLayerCard('Layer 1 · Rule', data.layer1);
+      document.getElementById('card-l2').innerHTML = renderLayerCard('Layer 2 · LLM', data.layer2);
+      document.getElementById('card-l3').innerHTML = renderLayerCard('Layer 3 · Model', data.layer3);
+      document.getElementById('final-box').style.display = 'block';
+      document.getElementById('final-label').innerText = data.final_label;
+      document.getElementById('final-meta').innerText = `Conf=${data.final_confidence.toFixed(3)} · Decided by ${data.decided_by}`;
+      box.innerHTML = '';
+    });
+
+    loadOptions();
+  </script>
+</body>
+</html>
