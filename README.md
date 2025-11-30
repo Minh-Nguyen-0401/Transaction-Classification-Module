@@ -22,7 +22,7 @@ The webapp reuses the artifacts produced by the offline pipeline (encoders, embe
 - `logs/`, `reports/` – logging and reporting outputs.
 - `Makefile`, `Makefile.linux` – orchestrate the end-to-end pipeline.
 
-See `data/DATA_FLOW.md` for a detailed walkthrough of the data flow and training steps, and `webapp/README.md` for webapp-specific details.
+See `docs/MODEL_ARCHITECTURE.md` for a detailed walkthrough of the data flow, model architecture and training steps, and `webapp/README.md` for webapp-specific details.
 
 ## Overview of End-to-End MLOps Pipeline
 
